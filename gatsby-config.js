@@ -6,5 +6,16 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: [],
+  plugins: [
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "Volly",
+        // This is the field under which it's accessible
+        fieldName: "Volly",
+        // URL to query from
+        url: "/.netlify/functions/volly",
+      },
+    },
+  ],
 }
