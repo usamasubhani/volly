@@ -14,7 +14,7 @@ module.exports = {
         // This is the field under which it's accessible
         fieldName: "Volly",
         // URL to query from
-        url: "/.netlify/functions/volly",
+        url: "http://localhost:8888/.netlify/functions/volly",
       },
     },
   ],
