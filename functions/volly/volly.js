@@ -1,5 +1,6 @@
 const { ApolloServer, gql } = require("apollo-server-lambda"),
   faunadb = require("faunadb"),
+  shortId = require("shortid"),
   axios = require("axios"),
   q = faunadb.query;
 
@@ -31,7 +32,6 @@ const typeDefs = gql`
       flavourTop: String!
       flavourMiddle: String!
       flavourBottom: String!
-      slug: String!
     ): Lolly
   }
 `;
@@ -79,24 +79,26 @@ const resolvers = {
   Mutation: {
     createLolly: async (_, args) => {
       try {
-        // const slug = shortId.generate();
-        // args.slug = slug;
-
+        const slug = shortId.generate();
+        console.log(slug)
+        args.slug = slug;
+        console.log(args)
         const result = await Client.query(
-          q.Create(q.Collection("Lolly"), {
+          q.Create(q.Collection("Volly"), {
             data: args,
           })
         );
 
-        axios
-          .post(process.env.NETLIFY_HOOK_URL)
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.error(error);
-          });
+        // axios
+        //   .post(process.env.NETLIFY_HOOK_URL)
+        //   .then(function (response) {
+        //     console.log(response);
+        //   })
+        //   .catch(function (error) {
+        //     console.error(error);
+        //   });
 
+        console.log(result)
         return result.data;
       } catch (error) {
         return error.toString();
