@@ -5,6 +5,7 @@ import gql from "graphql-tag";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Lolly from '../components/lolly'
+import Navbar from '../components/Navbar';
 
 const CreateLollyMutation = gql`
 mutation createLolly(
@@ -80,6 +81,7 @@ const CreateLolly = () => {
 
     return (
         <header>
+            <Navbar />
             <section>
                 <aside>
                     <Lolly
