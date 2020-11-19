@@ -1,11 +1,15 @@
 import { navigate } from "gatsby"
 import React from "react"
 import Lolly from '../components/lolly'
+import Navbar from "../components/Navbar"
 
 export default function Home() {
   return (
     <div>
       <header>
+        <Navbar />
+        <h1>Volly</h1>
+        <p>Send virtual lolly to someone</p>
         <section>
           <aside>
             <Lolly
@@ -30,9 +34,13 @@ export default function Home() {
           </aside>
         </section>
 
-        <button onClick={() => {
-          navigate("/createlolly")
-        }}>Create</button>
+        <p>
+          <a href="#" onClick={() => {
+            navigate("/createlolly")
+          }}>
+            <i>Create</i>
+          </a>
+        </p>
       </header>
     </div>
   )
