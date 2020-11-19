@@ -12,10 +12,11 @@ query GetLollyBySlug($slug: String!) {
       flavourTop
       flavourMiddle
       flavourBottom
+      slug
     }
   }`
 
-const Frozen = ({location}) => {
+const Frozen = ({ location }) => {
     const { loading, error, data } = useQuery(GetLollyBySlugQuery, {
         variables: {
             slug: location.pathname.replace('/frozen/', ''),
@@ -26,18 +27,21 @@ const Frozen = ({location}) => {
     console.log(data)
 
     return (
-        <div>
+        <section>
             <Lolly
                 flavourTop={data?.GetLollyBySlug?.flavourTop}
                 flavourMiddle={data?.GetLollyBySlug?.flavourMiddle}
                 flavourBottom={data?.GetLollyBySlug?.flavourBottom}
             />
-            <div>
-                <p>To: {data?.GetLollyBySlug?.to}</p>
-                <p>From: {data?.GetLollyBySlug?.from}</p>
-                <p>Message: {data?.GetLollyBySlug?.message}</p>
-            </div>
-        </div>
+            <aside>
+                <div>
+                    <h3>To: {data?.GetLollyBySlug?.to}</h3>
+                    <h4>From: {data?.GetLollyBySlug?.from}</h4>
+                    <p>Message: {data?.GetLollyBySlug?.message}</p>
+                    <p> URL: <a href={location.origin + '/frozen/' + data?.GetLollyBySlug?.slug}>{location.origin}/frozen/{data?.GetLollyBySlug?.slug}</a></p>
+                </div>
+            </aside>
+        </section>
     )
 }
 
