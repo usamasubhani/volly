@@ -15,10 +15,10 @@ query GetLollyBySlug($slug: String!) {
     }
   }`
 
-const Frozen = ({ path, slug = "testslug", location }) => {
+const Frozen = ({location}) => {
     const { loading, error, data } = useQuery(GetLollyBySlugQuery, {
         variables: {
-            slug: slug,
+            slug: location.pathname.replace('/frozen/', ''),
         },
     });
 
