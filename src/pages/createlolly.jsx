@@ -73,6 +73,7 @@ const CreateLolly = () => {
             from: "",
           },
         });
+        await navigate(`/lollies/${result.data.CreateLolly?.slug}`)
         // await navigate(`/lollies/${result.data?.craeteLolly?.slug}`);
         console.log(result);
       };
