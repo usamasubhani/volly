@@ -42,16 +42,22 @@ const resolvers = {
       try {
         console.log('hello')
         const result = await Client.query(
-          q.Map(
+          // q.Map(
           q.Paginate(q.Match(q.Index("get_all_lollies"))),
-            q.Lambda((lolly) => q.Get(lolly))
-          )
+            // q.Lambda((lolly) => q.Get(lolly))
+          // )
         );
         console.log(result)
+        return result.data.map(([to, message, from, flavourTop, flavourMiddle, flavourBottom, slug]) => ({
+          to, message, from, flavourTop, flavourMiddle, flavourBottom, slug
+        }));
+        return result.data
         let x = [];
       result.data.map((curr) => {
-        x.push(curr.data);
+        x.push(curr);
       });
+
+      console.log(x)
 
       return x;
         
