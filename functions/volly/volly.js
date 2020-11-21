@@ -83,7 +83,7 @@ const resolvers = {
         );
 
         axios
-          .post(process.env.NETLIFY_HOOK_URL)
+          .post('https://api.netlify.com/build_hooks/5fb93f26ef2923c39fd20629')
           .then(function (response) {
             console.log(response);
           })
