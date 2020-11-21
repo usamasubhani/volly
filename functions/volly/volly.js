@@ -51,30 +51,6 @@ const resolvers = {
         return result.data.map(([to, message, from, flavourTop, flavourMiddle, flavourBottom, slug]) => ({
           to, message, from, flavourTop, flavourMiddle, flavourBottom, slug
         }));
-        return result.data
-        let x = [];
-      result.data.map((curr) => {
-        x.push(curr);
-      });
-
-      console.log(x)
-
-      return x;
-        
-        return result.data.map(([to, message, from, flavourTop, flavourMiddle, flavourBottom, slug]) => ({
-          to, message, from, flavourTop, flavourMiddle, flavourBottom, slug
-        }));
-        return result.data.map((lolly) => {
-          return {
-            to: lolly.data.to,
-            message: lolly.data.message,
-            from: lolly.data.from,
-            flavourTop: lolly.data.flavourTop,
-            flavourMiddle: lolly.data.flavourMiddle,
-            flavourBottom: lolly.data.flavourBottom,
-            slug: lolly.data.slug,
-          };
-        });
       } catch (error) {
         return error.toString();
       }
