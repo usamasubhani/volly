@@ -82,14 +82,14 @@ const resolvers = {
           })
         );
 
-        // axios
-        //   .post(process.env.NETLIFY_HOOK_URL)
-        //   .then(function (response) {
-        //     console.log(response);
-        //   })
-        //   .catch(function (error) {
-        //     console.error(error);
-        //   });
+        axios
+          .post(process.env.NETLIFY_HOOK_URL)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
 
         console.log(result)
         return result.data;
