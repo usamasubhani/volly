@@ -1,46 +1,41 @@
-import { navigate } from "gatsby"
+import { navigate, graphql } from "gatsby"
 import React from 'react'
-import { useQuery, useMutation } from "@apollo/client";
-import gql from "graphql-tag";
 import Lolly from '../components/lolly'
 
-const GetLollyBySlugQuery = gql`
-query GetLollyBySlug($slug: String!) {
-    GetLollyBySlug(slug: $slug) {
-      to
-      message
-      from
-      flavourTop
-      flavourMiddle
-      flavourBottom
-      slug
+export const query = graphql`
+    query($slug: String!) {
+        Vollies {
+            GetLollyBySlug(slug: $slug) {
+                to
+                message
+                from
+                flavourTop
+                flavourMiddle
+                flavourBottom
+                slug
+              }
+        }
     }
-  }`
+`
 
-const lollyPage = ({ location }) => {
-    const { loading, error, data } = useQuery(GetLollyBySlugQuery, {
-        variables: {
-            slug: location.pathname.replace('/frozen/', ''),
-        },
-    });
+const lollyPage = ({ data ,location}) => {
 
-    console.log(error)
     console.log(data)
 
     return (
         <div>
             <section>
                 <Lolly
-                    flavourTop={data?.GetLollyBySlug?.flavourTop}
-                    flavourMiddle={data?.GetLollyBySlug?.flavourMiddle}
-                    flavourBottom={data?.GetLollyBySlug?.flavourBottom}
+                    flavourTop={data?.Vollies?.GetLollyBySlug?.flavourTop}
+                    flavourMiddle={data?.Vollies?.GetLollyBySlug?.flavourMiddle}
+                    flavourBottom={data?.Vollies?.GetLollyBySlug?.flavourBottom}
                 />
                 <aside>
                     <div>
-                        <h3>To: {data?.GetLollyBySlug?.to}</h3>
-                        <h4>From: {data?.GetLollyBySlug?.from}</h4>
-                        <p>Message: {data?.GetLollyBySlug?.message}</p>
-                        <p> URL: <a href={location.origin + '/frozen/' + data?.GetLollyBySlug?.slug}>{location.origin}/frozen/{data?.GetLollyBySlug?.slug}</a></p>
+                        <h3>To: {data?.Vollies?.GetLollyBySlug?.to}</h3>
+                        <h4>From: {data?.Vollies?.GetLollyBySlug?.from}</h4>
+                        <p>Message: {data?.Vollies?.GetLollyBySlug?.message}</p>
+                        <p> URL: <a href={location.origin + '/frozen/' + data?.Vollies?.GetLollyBySlug?.slug}>{location.origin}/frozen/{data?.Vollies?.GetLollyBySlug?.slug}</a></p>
                     </div>
 
                     <p>
